@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "@seleniumhq/side-utils": "^3.17.0"
+  },
+  "deprecated": false,
+  "description": "Export Selenium IDE project contents to JavaScript Mocha",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/preset-env": "^7.4.5"
+  },
+  "homepage": "https://github.com/mattonem/code-export-browserstack-mocha#readme",
+  "keywords": [
+    "selenium",
+    "ide",
+    "export"
+  ],
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "name": "@maxmattone/code-export-browserstack-mocha",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattonem/code-export-browserstack-mocha.git"
+  },
+  "scripts": {
+    "build": "babel -d dist src --ignore=__test__",
+    "watch": "yarn build -w"
+  },
+  "version": "0.1.0",
+  "author": "maxmattone"
+}
