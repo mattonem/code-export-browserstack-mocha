@@ -87,14 +87,14 @@ function beforeAll() {
 
 function beforeEach() {
   const params = {
-    startingSyntax: ({ browserName } = {}) => ({
+    startingSyntax: ({ capabilities, gridUrl } = {}) => ({
       commands: [
         { level: 0, statement: 'beforeEach(async function() {' },
         {
           level: 1,
           statement: `driver = await new Builder()
-          .forBrowser('chrome')
-          .usingServer('https://${process.env.BROWSERSTACK_USER}:${process.env.BROWSERSTACK_ACCESSKEY}@hub-cloud.browserstack.com/wd/hub')
+          .withCapabilities(${JSON.stringify(capabilities)})
+          .usingServer('${gridUrl}')
           .build()`,
         },
         { level: 1, statement: 'vars = {}' },
