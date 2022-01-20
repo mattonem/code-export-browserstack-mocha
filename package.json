@@ -27,6 +27,6 @@
     "build": "babel -d dist src --ignore=__test__",
     "watch": "yarn build -w"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "maxmattone"
 }
