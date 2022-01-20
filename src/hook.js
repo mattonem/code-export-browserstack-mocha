@@ -97,6 +97,10 @@ function beforeEach() {
           .usingServer('${gridUrl}')
           .build()`,
         },
+        {
+          level: 1,
+          statement: capabilities.device?'':'await driver.manage().window().maximize()',
+        },
         { level: 1, statement: 'vars = {}' },
       ],
     }),
