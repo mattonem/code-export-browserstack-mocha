@@ -79,7 +79,7 @@ export const emitters = {
   selectWindow: emitSelectWindow,
   sendKeys: emitSendKeys,
   setSpeed: emitSetSpeed,
-  setWindowSize: skip,
+  setWindowSize: emitSetWindowSize,
   store: emitStore,
   storeAttribute: emitStoreAttribute,
   storeJson: emitStoreJson,
@@ -540,10 +540,12 @@ async function emitRunScript(script) {
 }
 
 async function emitSetWindowSize(size) {
-  const [width, height] = size.split('x')
-  return Promise.resolve(
-    `await driver.manage().window().setRect(${width}, ${height})`
-  )
+  const [width, height] = size.split('x');
+
+  return Promise.resolve(`
+    if(!(await driver.getCapabilities()).get("device"))
+    {await driver.manage().window().setRect({width: ${width}, height: ${height}})}
+    `);
 }
 
 async function emitSelect(selectElement, option) {
