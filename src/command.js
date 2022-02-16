@@ -899,7 +899,7 @@ async function emitVerifyText(locator, text) {
     {
       level: 0,
       statement: `assert.equal(
-        await driver.findElement(${await location.default.emit(locator)}).getText(),
+        await driver.findElement(${await location.emit(locator)}).getText(),
         "${exporter.emit.text(text)}")`
     },
   ]
