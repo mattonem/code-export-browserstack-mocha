@@ -845,7 +845,7 @@ async function emitVerifyNotSelectedValue(locator, expectedValue) {
     },
     {
       level: 1,
-      statement: `assert.equal(value, "${_sideUtils.codeExport.emit.text(expectedValue)}")`
+      statement: `assert.equal(value, "${exporter.emit.text(expectedValue)}")`
     },
     { level: 0, statement: `}` },
   ]
@@ -861,7 +861,7 @@ async function emitVerifyNotText(locator, text) {
         locator
       )}).getText()`,
     },
-    { level: 1, statement: `assert.notEqual(text, "${_sideUtils.codeExport.emit.text(text)}")` },
+    { level: 1, statement: `assert.notEqual(text, "${exporter.emit.text(text)}")` },
     { level: 0, statement: `}` },
   ]
   return Promise.resolve({ commands })
@@ -899,8 +899,8 @@ async function emitVerifyText(locator, text) {
     {
       level: 0,
       statement: `assert.equal(
-        await driver.findElement(${await _location.default.emit(locator)}).getText(),
-        "${_sideUtils.codeExport.emit.text(text)}")`
+        await driver.findElement(${await location.default.emit(locator)}).getText(),
+        "${exporter.emit.text(text)}")`
     },
   ]
   return Promise.resolve({ commands })
