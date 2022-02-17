@@ -61,7 +61,7 @@ function afterEach() {
         { level: 1, statement: `if (this.currentTest.state === \'passed\')
           {await driver.executeScript(\'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed"}}\');}
         else if (this.currentTest.err)
-          { var reason = JSON.stringify(this.currentTest.err.message);
+          { var reason = JSON.stringify(this.currentTest.err.code + ": " + this.currentTest.err.message);
             await driver.executeScript(\`browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason":\${reason}}}\`);}
           else
           {await driver.executeScript(\'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed"}}\');}`},
