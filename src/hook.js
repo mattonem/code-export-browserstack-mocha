@@ -138,10 +138,6 @@ function declareVariables() {
       commands: [
         {
           level: 0,
-          statement: `this.timeout(30000)`,
-        },
-        {
-          level: 0,
           statement: `let driver`,
         },
         {
