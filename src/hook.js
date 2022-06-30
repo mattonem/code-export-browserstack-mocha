@@ -124,7 +124,11 @@ function declareDependencies() {
         },
         {
           level: 0,
-          statement: '',
+          statement: `const https = require('https')`,
+        },
+        {
+          level: 0,
+          statement: `https.globalAgent.keepAlive = true`,
         },
       ],
     },
