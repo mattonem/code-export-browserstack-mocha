@@ -543,7 +543,7 @@ async function emitSetWindowSize(size) {
   const [width, height] = size.split('x');
 
   return Promise.resolve(`
-    if(!(await driver.getCapabilities()).get("device"))
+    if(!(await driver.getCapabilities()).get("device") && !(await driver.getCapabilities()).get("deviceName"))
     {await driver.manage().window().setRect({width: ${width}, height: ${height}})}
     `);
 }
