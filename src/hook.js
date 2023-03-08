@@ -60,7 +60,10 @@ function afterEach() {
         { level: 0, statement: 'afterEach(async function() {' },
         { level: 1, statement: `if (this.currentTest.state === \'passed\')
           {await driver.executeScript(\'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed"}}\');}
-        else
+        else if (this.currentTest.err)
+          { var reason = JSON.stringify(this.currentTest.err.code + ": " + this.currentTest.err.message);
+            await driver.executeScript(\`browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason":\${reason}}}\`);}
+          else
           {await driver.executeScript(\'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed"}}\');}`},
         { level: 1, statement: 'await driver.quit();' },
       ],
@@ -121,7 +124,11 @@ function declareDependencies() {
         },
         {
           level: 0,
-          statement: '',
+          statement: `const https = require('https')`,
+        },
+        {
+          level: 0,
+          statement: `https.globalAgent.keepAlive = true`,
         },
       ],
     },
@@ -133,10 +140,6 @@ function declareVariables() {
   const params = {
     startingSyntax: {
       commands: [
-        {
-          level: 0,
-          statement: `this.timeout(30000)`,
-        },
         {
           level: 0,
           statement: `let driver`,
